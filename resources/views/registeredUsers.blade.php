@@ -30,6 +30,10 @@
                                                             class="rounded-tl-lg text-sm font-medium px-6 py-4">
                                                             NAME
                                                         </th>
+                                                        <th scope="col"
+                                                            class="rounded-tl-lg text-sm font-medium px-6 py-4">
+                                                            NAME
+                                                        </th>
                                                         <th scope="col" class="text-sm font-medium px-6 py-4">TITLE
                                                         </th>
                                                         <th scope="col" class="text-sm font-medium px-6 py-4">STATUS
@@ -47,6 +51,13 @@
                                                     @forelse ($users as $user)
 
                                                     <tr class="border-b">
+                                                        <td
+                                                            class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left">
+                                                            <div class="flex flex-col">
+                                                                <p class="mb-0.5">{{ $user->id }}</p>
+
+                                                            </div>
+                                                        </td>
                                                         <th scope="row"
                                                             class="text-sm font-normal px-6 py-4 whitespace-nowrap text-left">
                                                             <div class="flex flex-row items-center">
@@ -99,6 +110,44 @@
 
                                                 </tbody>
                                             </table>
+
+
+
+                                            <div class="d-flex justify-content-center m-3 float-right">
+                                                <span class="inline-flex items-center">
+                                                    @if ($users->previousPageUrl())
+                                                    <a class="page-link mx-2" href="{{ $users->previousPageUrl() }}"
+                                                        aria-label="Previous">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                            class="w-6 h-6">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z" />
+                                                        </svg>
+                                                    </a>
+                                                    @endif
+
+                                                    <input type="number" class="page-link text-center" min="1"
+                                                        max="{{ $users->lastPage() }}" id="pageNumber"
+                                                        value="{{ $users->currentPage() }}" style="outline: none;" />
+
+                                                    @if ($users->nextPageUrl())
+                                                    <a class="page-link mx-2" href="{{ $users->nextPageUrl() }}"
+                                                        aria-label="Next">
+                                                        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                            stroke="currentColor" class="w-6 h-6">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z" />
+                                                        </svg>
+                                                    </a>
+                                                    @endif
+                                                </span>
+                                            </div>
+
+
+
+
+
                                         </div>
                                     </div>
                                 </div>

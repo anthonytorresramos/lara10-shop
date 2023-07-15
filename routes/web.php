@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     ## Route for Registered Users
-    Route::get('/registered_users', [RegisteredUsersController::class, 'index'])->name('user_tabs');
+    Route::get('/registered_users_tabs', [RegisteredUsersController::class, 'index'])->name('user_tabs');
 });
 
 require __DIR__.'/auth.php';

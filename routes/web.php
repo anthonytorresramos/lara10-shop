@@ -29,7 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     ## Route for Registered Users
-    Route::get('/registered_users_tabs', [RegisteredUsersController::class, 'index'])->name('user_tabs');
+    Route::get('registered_users_tabs', [RegisteredUsersController::class, 'index'])->name('user_tabs');
+    Route::get('registered_users_tabs/create', [RegisteredUsersController::class, 'create'])->name('user_tabs.create');
 });
 
 require __DIR__.'/auth.php';

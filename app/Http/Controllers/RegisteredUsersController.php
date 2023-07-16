@@ -78,5 +78,16 @@ class RegisteredUsersController extends Controller
         return redirect()->back();
     }
 
+    public function delete(Request $request, $userId){
+
+        $user = User::findOrFail($userId);
+
+        $user->delete();
+
+        Session::flash('success', 'User deleted successfully!');
+
+        return redirect()->back();
+    }
+
 
 }

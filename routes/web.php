@@ -44,6 +44,9 @@ Route::middleware('auth')->group(function () {
     ## Update Route for create users
     Route::put('registered_users_tabs/edit/{userId}', [RegisteredUsersController::class, 'update'])->name('user_tabs.update');
 
+    ## Soft Delete user
+    Route::delete('registered_users_tabs/delete/{userId}', [RegisteredUsersController::class, 'delete'])->name('user_tabs.delete');
+
 
 
 

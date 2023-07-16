@@ -89,5 +89,19 @@ class RegisteredUsersController extends Controller
         return redirect()->back();
     }
 
+    public function archive(){
+        $users = User::onlyTrashed()->paginate(10);
+        return view('dashboard.tabs.registeredUsers.archive', compact('users'));
+    }
+
+    public function restore($userId){
+        $user = User::withTrashed()->find($userId);
+        $user->restore();
+
+        Session::flash('success', 'User restored successfully!');
+
+        return redirect()->back();
+    }
+
 
 }

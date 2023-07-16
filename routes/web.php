@@ -47,11 +47,18 @@ Route::middleware('auth')->group(function () {
     ## Soft Delete user
     Route::delete('registered_users_tabs/delete/{userId}', [RegisteredUsersController::class, 'delete'])->name('user_tabs.delete');
 
-
-
-
-
+    ## Show Archive of all soft deleted users
     Route::get('registered_users_tabs/archive', [RegisteredUsersController::class, 'archive'])->name('user_tabs.archive');
+
+    ## Restore Soft Deleted users
+    Route::get('registered_users_tabs/restore/{userId}', [RegisteredUsersController::class, 'restore'])->name('user_tabs.restore');
+
+
+
+
+
+
+
 });
 
 ## route group with prefix and can only be access when authenticated.

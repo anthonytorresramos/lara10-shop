@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\RegisteredUsersController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -28,9 +29,31 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    ## Route for Registered Users
+    ## Route to view all registered users
     Route::get('registered_users_tabs', [RegisteredUsersController::class, 'index'])->name('user_tabs');
-    Route::get('registered_users_tabs/create', [RegisteredUsersController::class, 'create'])->name('user_tabs.create');
+
+    ## Create View Route for create users
+    Route::view('registered_users_tabs/create', 'dashboard.tabs.registeredUsers.create')->name('user_tabs.create');
+
+    ## Post Route to validate and store new users
+    Route::post('registered_users_tabs/store', [RegisteredUsersController::class, 'store'])->name('user_tabs.store');
+
+    ## Edit Route for create users
+    Route::get('registered_users_tabs/edit/{userId}', [RegisteredUsersController::class, 'edit'])->name('user_tabs.edit');
+
+    ## Update Route for create users
+    Route::put('registered_users_tabs/edit/{userId}', [RegisteredUsersController::class, 'update'])->name('user_tabs.update');
+
+
+
+
+
+    Route::get('registered_users_tabs/archive', [RegisteredUsersController::class, 'archive'])->name('user_tabs.archive');
+});
+
+## route group with prefix and can only be access when authenticated.
+Route::prefix('ajax')->middleware('auth')->group(function () {
+    Route::post('user_tabs/page', [RegisteredUserController::class, 'userTabs_page'])->name('user_tabs.page');
 });
 
 require __DIR__.'/auth.php';
